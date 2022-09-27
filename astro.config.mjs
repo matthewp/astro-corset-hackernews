@@ -1,10 +1,13 @@
 import { defineConfig } from 'astro/config';
-import netlify from "@astrojs/netlify";
-
-import solid from "@astrojs/solid-js";
+import fastify from "@matthewp/astro-fastify";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: netlify(),
-  integrations: [solid()]
+  output: 'server',
+  adapter: fastify({}),
+  vite: {
+    optimizeDeps: {
+      exclude: ['corset']
+    }
+  }
 });
